@@ -1,0 +1,45 @@
+{
+  "name": "shoesshop",
+  "version": "1.0.0",
+  "description": "Final project ne` ba",
+  "main": "backend/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node backend/server.js",
+    "dev": "nodemon backend/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shjnn/Final-project-2002.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shjnn/Final-project-2002/issues"
+  },
+  "homepage": "https://github.com/Shjnn/Final-project-2002#readme",
+  "dependencies": {
+    "-": "^0.0.1",
+    "alert": "^5.1.1",
+    "axios": "^0.21.1",
+    "basic": "^2.0.3",
+    "bcryptjs": "2.4.3",
+    "body-parser": "1.19.0",
+    "chart.js": "^3.5.1",
+    "cloudinary": "^1.26.3",
+    "cookie-parser": "1.4.5",
+    "country-state-city": "^3.0.1",
+    "crypto": "1.0.1",
+    "devtools": "^7.24.0",
+    "dom": "^0.0.3",
+    "dotenv": "16.0.1",
+    "express": "4.17.1",
+    "express-fileupload": "1.2.1",
+    "extension": "^0.2.2",
+    "helmet": "^6.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "6.5.1",
+    "nodemailer": "6.6.3",
+    "nodemon": "2.0.19"
+  }
+}
