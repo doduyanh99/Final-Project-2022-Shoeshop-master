@@ -5,14 +5,13 @@ import {  getProduct } from "../../actions/productAction";
 import Loader from "../layout/Loader/Loader";
 import ProductCard from "../Home/ProductCart.js";
 
-const Products = ( match ) => {
+const Products = ( {match} ) => {
     const dispatch = useDispatch();
     const { products, loading} = useSelector(
         (state) => state.products
     );
 
-    const keyword = match.params.keyword;
-
+    const keyword = match?.params?.keyword;
     useEffect(() => {
         dispatch(getProduct(keyword));
     }, [dispatch, keyword]);

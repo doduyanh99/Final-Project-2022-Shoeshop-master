@@ -30,6 +30,9 @@ const Home = () => {
           <div className="banner">
             <p>Welcome to Shopshoes</p>
             <h1>ELEVATE VIETNAMESE FEELS</h1>
+            <div>
+              
+            </div>
             <img src={Images.logoShose} height={250}/>
           </div>
           <h2 className="homeHeading">Featured Products:</h2>

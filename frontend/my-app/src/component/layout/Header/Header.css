@@ -1,11 +1,19 @@
-.speedDial {
-  position: fixed;
-  right: 3vmax;
-  top: 3vmax;
+.HeaderContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  align-items: center;
+  gap: 200px;
 }
 
-.speedDialIcon {
-  width: 56px;
-  height: 56px;
-  border-radius: 100%;
+.HeaderContainer > img {
+  width: 150px;
+  height: 120px;
+}
+.HeaderContainer > p{
+  cursor: pointer;
+  text-transform: uppercase
+}
+.HeaderContainer > p:hover{
+  color: red;
 }
