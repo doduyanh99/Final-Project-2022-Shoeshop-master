@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Loader from "../layout/Loader/Loader";
 import { useAlert } from "react-alert";
 import Product from "./ProductCart.js";
-
+import Images from "../../images/Header"
 
 const Home = () => {
   const alert = useAlert();
@@ -30,15 +30,9 @@ const Home = () => {
           <div className="banner">
             <p>Welcome to Shopshoes</p>
             <h1>ELEVATE VIETNAMESE FEELS</h1>
-
-            <a href="#container">
-              <button>
-                Scroll 
-              </button>
-            </a>
+            <img src={Images.logoShose} height={250}/>
           </div>
-
-          <h2 className="homeHeading">Featured Products</h2>
+          <h2 className="homeHeading">Featured Products:</h2>
 
           <div className="container" id="container">
             {products && 
