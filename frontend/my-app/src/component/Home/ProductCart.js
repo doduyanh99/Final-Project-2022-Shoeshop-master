@@ -16,9 +16,10 @@ const ProductCart = ({ product }) => {
         <ReactStars {...options} />{" "}
         <span>({product.numOfReviews} Reviews)</span>
       </div>
-      <span>{`${product.price} VND`}</span>
+      <span>{`${product.price}VND`}</span>
     </Link>
   );
 };
+
 
 export default ProductCart;
