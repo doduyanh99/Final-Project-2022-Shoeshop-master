@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import logo from "../../../images/Header/Shoeslogo.jpg";
 import "./Header.css"
 
@@ -8,11 +9,11 @@ import "./Header.css"
 
     return (
      <div className="HeaderContainer">
-      <img src={logo} className=""/>
-      <p>HOME</p>
-      <p>Product</p>
-      <p>About</p>
-      <p>Contact</p>
+      <img src={logo} alt="logo"/>
+      <Link to={"/"} className="textLink">HOME</Link>
+      <Link to={"/products"} className="textLink">Product</Link>
+      <Link className="textLink" >About</Link>
+      <Link className="textLink">Contact</Link>
      </div>
     ) 
   };

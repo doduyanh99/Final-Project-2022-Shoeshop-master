@@ -13,7 +13,13 @@
 .HeaderContainer > p{
   cursor: pointer;
   text-transform: uppercase
+  
 }
-.HeaderContainer > p:hover{
+.textLink{
+  text-decoration: none;
+  color: black;
+  
+}
+.textLink:hover{
   color: red;
 }

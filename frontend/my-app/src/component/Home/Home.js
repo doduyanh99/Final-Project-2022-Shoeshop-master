@@ -31,9 +31,9 @@ const Home = () => {
             <p>Welcome to Shopshoes</p>
             <h1>ELEVATE VIETNAMESE FEELS</h1>
             <div>
-              
+              <img src={Images.logoAll} height={250} alt="nike"></img>
             </div>
-            <img src={Images.logoShose} height={250}/>
+          
           </div>
           <h2 className="homeHeading">Featured Products:</h2>
 
