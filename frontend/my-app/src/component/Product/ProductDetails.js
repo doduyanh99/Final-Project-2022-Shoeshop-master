@@ -61,7 +61,7 @@ const ProductDetails = ({ match }) => {
             <div className="detailsBlock-3">
               <p>
              
-                <h1>{`Price: ${product.price}$`}</h1>
+                <h1>{`Price: ${product.price}VND`}</h1>
               </p>
            
               <div className="detailsBlock-3-1">
