@@ -11,7 +11,7 @@ import "./Header.css"
      <div className="HeaderContainer">
       <img src={logo} alt="logo"/>
       <Link to={"/"} className="textLink">HOME</Link>
-      <Link to={"/products"} className="textLink">Product</Link>
+      <Link to={"/products"} className="textLink">Products</Link>
       <Link className="textLink" >About</Link>
       <Link className="textLink">Contact</Link>
      </div>
