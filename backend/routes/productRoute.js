@@ -10,7 +10,7 @@ const {
     createProductReview,
     getProductReviews,
     deleteReview
-} = require("../Controller/productKontroller");
+} = require("../Controller/productController");
 
 
 router.route("/products").get(getAllProducts);
