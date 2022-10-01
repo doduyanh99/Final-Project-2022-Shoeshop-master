@@ -9,6 +9,7 @@ import {
 
 
 export const productsReducer = (state = { products: [] }, action) => {
+  console.log(action,"action")
     switch (action.type) {
       case ALL_PRODUCT_REQUEST:
         return {
@@ -18,9 +19,10 @@ export const productsReducer = (state = { products: [] }, action) => {
       case ALL_PRODUCT_SUCCESS:
         return {
           loading: false,
-          products: action.payload,
+          products: action.payload?.products,
           productsCount: action.payload.productsCount,
           resultPerPage: action.payload.resultPerPage,
+          filteredProductsCount:action.payload.filteredProductsCount
         };
   
       case ALL_PRODUCT_FAIL:

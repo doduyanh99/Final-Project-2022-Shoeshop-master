@@ -8,24 +8,41 @@ import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
 import Pagination from "react-js-pagination";
 
+
+const categories = [
+  "Vans",
+  "Adidas",
+  "Nike",
+  "Sandal",
+];
+
+
 const Products = ({ match }) => {
   const dispatch = useDispatch();
   const [price, setPrice] = useState([0, 400000]);
   const [currentPage, setCurrentPage] = useState(1);
-  const { products, loading ,productsCount , resultPerPage } = useSelector((state) => state.products);
+  const [category, setCategory] = useState("");
+
+  const {
+    products,
+    loading,
+    productsCount,
+    resultPerPage,
+  } = useSelector((state) => state.products);
+  const [ratings, setRatings] = useState(0);
+
+  
 
   const keyword = match?.params?.keyword;
   const priceHandler = (event, newPrice) => {
     setPrice(newPrice);
   };
-
   const setCurrentPageNo = (e) => {
     setCurrentPage(e);
   };
-  
   useEffect(() => {
-    dispatch(getProduct(keyword,currentPage,price));
-  }, [currentPage, dispatch, keyword, price]);
+    dispatch(getProduct(keyword, currentPage, price,ratings,category));
+  }, [currentPage, dispatch, keyword, price,ratings,category]);
 
   return (
     <>
@@ -51,8 +68,36 @@ const Products = ({ match }) => {
               min={0}
               max={400000}
             />
+
+<Typography>Categories</Typography>
+            <ul className="categoryBox">
+              {categories.map((category) => (
+                <li
+                  className="category-link"
+                  key={category}
+                  onClick={() => setCategory(category)}
+                >
+                  {category}
+                </li>
+              ))}
+            </ul>
+
+            <fieldset className="rating">
+              <Typography component="legend">Ratings Above</Typography>
+              <Slider
+                value={ratings}
+                onChange={(e, newRating) => {
+                  setRatings(newRating);
+                }}
+                aria-labelledby="continuous-slider"
+                valueLabelDisplay="auto"
+                min={0}
+                max={5}
+              />
+            </fieldset>
           </div>
-          { (
+
+          {
             <div className="paginationBox">
               <Pagination
                 activePage={currentPage}
@@ -69,7 +114,7 @@ const Products = ({ match }) => {
                 activeLinkClass="pageLinkActive"
               />
             </div>
-          )}
+          }
         </>
       )}
     </>
