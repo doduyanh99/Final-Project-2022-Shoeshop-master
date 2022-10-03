@@ -6,8 +6,9 @@ import Loader from "../layout/Loader/Loader";
 import { useAlert } from "react-alert";
 import Product from "./ProductCart.js";
 import Images from "../../images/Header"
+import Search from "../Product/Search";
 
-const Home = () => {
+const Home = ({history}) => {
   const alert = useAlert();
   const dispatch = useDispatch();
   const { loading, error, products } = useSelector((state) => state.products);
@@ -29,6 +30,7 @@ const Home = () => {
 
           <div className="banner">
             <p>Welcome to Shopshoes</p>
+        
             <h1>ELEVATE VIETNAMESE FEELS</h1>
             <div>
               <img src={Images.logoAll} height={250} alt="nike"></img>

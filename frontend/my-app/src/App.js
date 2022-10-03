@@ -11,7 +11,7 @@ import Search from "./component/Product/Search.js";
 const App = () => {
   return (
     <Router>
-      <Header />
+      <Header/>
       <Route exact path="/" component={Home} />
       <Route exact path="/product/:id" component={ProductDetails} />
       <Route exact path="/products" component={Products} />

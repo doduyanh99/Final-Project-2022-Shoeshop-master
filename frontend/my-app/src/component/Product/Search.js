@@ -1,9 +1,12 @@
 import React, { useState, Fragment } from "react";
 import MetaData from "../layout/MetaData";
 import "./Search.css";
+import { useHistory } from "react-router-dom";
 
-const Search = ({ history }) => {
+const Search = () => {
   const [keyword, setKeyword] = useState("");
+
+  let history = useHistory();
 
   const searchSubmitHandler = (e) => {
     e.preventDefault();

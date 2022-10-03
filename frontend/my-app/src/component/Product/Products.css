@@ -69,7 +69,7 @@
   .filterBox {
     width: 10vmax;
     position: absolute;
-    top: 10vmax;
+    top: 450px;
     left: 4vmax;
   }
   
@@ -151,18 +151,12 @@
   }
   
   .pageItemActive {
-    background-color: tomato;
+    background-color: black;
   }
   
   .pageLinkActive {
     color: white;
   }
-  .filterBox {
-    width: 10vmax;
-    position: absolute;
-    top: 10vmax;
-    left: 4vmax;
-  }
-  .filterBox > fieldset {
-    border: 1px solid rgba(0, 0, 0, 0.329);
-  }
+
+
+
