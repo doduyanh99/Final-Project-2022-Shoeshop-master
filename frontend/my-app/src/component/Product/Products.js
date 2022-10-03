@@ -70,7 +70,7 @@ const Products = ({ match }) => {
             </ul>
 
             <div>
-              <h3 component="legend">Ratings Star</h3>
+              <h3 component="legend">Ratings Stars</h3>
               <Slider
                 value={ratings}
                 onChange={(e, newRating) => {
