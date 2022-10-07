@@ -45,7 +45,7 @@ const LoginSignUp = (history) => {
     myForm.set("email", email);
     myForm.set("password", password);
     myForm.set("avatar", avatar);
-    console.log("Login Form Submitted");
+    dispatch(register(myForm));
   };
 
   const registerDataChange = (e) => {

@@ -2,7 +2,7 @@ const app = require("./app");
 const dotenv = require("dotenv");
 const connectDatabase = require("./config/database");
 const bodyParser = require("body-parser");
-
+const cloudinary = require("cloudinary");
 
 //Handing uncaught exception:
 process.on("uncaughtException",(err)=>{
@@ -34,6 +34,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //Connecting database:
 connectDatabase();
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 const server = app.listen(process.env.PORT,()=>{
     console.log(`Server online at: http://localhost:${process.env.PORT}`)
