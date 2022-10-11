@@ -4,106 +4,109 @@ const catchAsyncError = require("../middleware/catchAsyncErrors");
 const sendToken = require("../ultils/jwtToken");
 const sendEmail = require("../ultils/sendEmails");
 const crypto = require("crypto");
+const cloudinary = require("cloudinary");
 
 // Register a User
 exports.registerUser = catchAsyncError(async (req, res, next) => {
-  
-    const { name, email, password } = req.body;
-    const user = await User.create({
-      name,
-      email,
-      password,
-      avatar: {
-        public_id:"asdasdsdasdasdasdasd",
-        url: "asdasdasdasd",
-      },
+  const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+    folder: "avatars",
+    width: 150,
+    crop: "scale",
+  });
+  const { name, email, password } = req.body;
+
+  const user = await User.create({
+    name,
+    email,
+    password,
+    avatar: {
+      public_id: myCloud.public_id,
+      url: myCloud.secure_url,
+    },
+  });
+
+  sendToken(user, 201, res);
+});
+
+// Login User
+
+exports.loginUser = catchAsyncError(async (req, res, next) => {
+  const { email, password } = req.body;
+
+  //Checking if user given pass and email yet
+
+  if (!email || !password) {
+    return next(new ErrorHander("please enter Email and Password", 400));
+  }
+
+  const user = await User.findOne({ email }).select("+password");
+
+  if (!user) {
+    return next(new ErrorHander("Invalid Email or Password", 401));
+  }
+  const isPasswprdMatched = await user.comparePassword(password);
+
+  if (!isPasswprdMatched) {
+    return next(new ErrorHander("Invalid email or Password", 401));
+  }
+
+  sendToken(user, 200, res);
+});
+
+//Log out for user:
+exports.logout = catchAsyncError(async (req, res, next) => {
+  res.cookie("token", null, {
+    expires: new Date(Date.now()),
+    httpOnly: true,
+  });
+
+  res.status(200).json({
+    success: true,
+    message: "Logged out",
+  });
+});
+
+//Forgot Password:
+exports.forgotPassword = catchAsyncError(async (req, res, next) => {
+  const user = await User.findOne({ email: req.body.email });
+
+  if (!user) {
+    return next(new ErrorHander("User not found", 404));
+  }
+
+  //Get reset Password:
+  const resetToken = user.getResetPasswordToken();
+
+  await user.save({ validateBeforeSave: false });
+
+  const resetPasswordUrl = `${req.protocol}://${req.get(
+    "host"
+  )}/api/v1/password/reset/${resetToken}`;
+
+  const message = `Your password reset token is :- \n\n ${resetPasswordUrl} \n\nIf you have not requested this email then, please ignore it.`;
+
+  try {
+    await sendEmail({
+      email: user.email,
+      subject: `Ecommerce Password Recovery`,
+      message,
     });
 
-    sendToken(user, 201, res);
-  });
-
-  // Login User
-
-  exports.loginUser = catchAsyncError(async ( req,res,next )=>{
-
-    const {email,password} = req.body;
-
-    //Checking if user given pass and email yet
-
-    if(!email || !password) {
-      return next(new ErrorHander("please enter Email and Password", 400));
-    }
-
-    const user = await User.findOne({email}).select("+password");
-
-    if(!user){
-      return next(new ErrorHander("Invalid Email or Password",401));
-    }
-    const isPasswprdMatched = await user.comparePassword(password);
-
-    if(!isPasswprdMatched) {
-      return next(new ErrorHander("Invalid email or Password", 401))
-    }
-
-    sendToken(user, 200, res);
-  });
-
-
-  //Log out for user:
-  exports.logout = catchAsyncError( async(req, res, next) => {
-
-      res.cookie("token", null, {
-        expires:new Date(Date.now()),
-        httpOnly: true,
-      });
-
-      res.status(200).json({
-          success: true,
-          message: "Logged out",
-      });
-  });
-
-  //Forgot Password:
-  exports.forgotPassword = catchAsyncError( async(req,res,next) => {
-    const user = await User.findOne({ email: req.body.email});
-
-    if (!user) {
-      return next(new ErrorHander("User not found", 404));
-    }
-
-    //Get reset Password:
-    const resetToken = user.getResetPasswordToken();
+    res.status(200).json({
+      success: true,
+      message: `Email sent to ${user.email} successfully`,
+    });
+  } catch (error) {
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpire = undefined;
 
     await user.save({ validateBeforeSave: false });
-  
-    const resetPasswordUrl = `${req.protocol}://${req.get(
-      "host"
-    )}/api/v1/password/reset/${resetToken}`;
-  
-    const message = `Your password reset token is :- \n\n ${resetPasswordUrl} \n\nIf you have not requested this email then, please ignore it.`;
-  
-    try {
-      await sendEmail({
-        email: user.email,
-        subject: `Ecommerce Password Recovery`,
-        message,
-      });
-  
-      res.status(200).json({
-        success: true,
-        message: `Email sent to ${user.email} successfully`,
-      });
-    } catch (error) {
-      user.resetPasswordToken = undefined;
-      user.resetPasswordExpire = undefined;
-  
-      await user.save({ validateBeforeSave: false });
-  
-      return next(new ErrorHander(error.message, 500));
-    }
-  });
 
-    // Reset Password
+    return next(new ErrorHander(error.message, 500));
+  }
+});
+
+// Reset Password
 exports.resetPassword = catchAsyncError(async (req, res, next) => {
   // creating token hash
   const resetPasswordToken = crypto
@@ -119,7 +122,10 @@ exports.resetPassword = catchAsyncError(async (req, res, next) => {
   if (!user) {
     return next(
       new ErrorHander(
-        "Reset Password Token is invalid or has been expired", 400));
+        "Reset Password Token is invalid or has been expired",
+        400
+      )
+    );
   }
 
   if (req.body.password !== req.body.confirmPassword) {
@@ -132,7 +138,6 @@ exports.resetPassword = catchAsyncError(async (req, res, next) => {
 
   await user.save();
   sendToken(user, 200, res);
-
 });
 // Get User Detail
 exports.getUserDetails = catchAsyncError(async (req, res, next) => {
@@ -173,20 +178,17 @@ exports.updateProfile = catchAsyncError(async (req, res, next) => {
   };
 
   // Add cloudinary later
-  
-    const user = await User.findByIdAndUpdate(req.user.id, newUserData,{
-      new: true,
-      runValidators: true,
-      useFindAndModify: false,
-    });
 
-    res.status(200).json({
-      success: true,
+  const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
+    new: true,
+    runValidators: true,
+    useFindAndModify: false,
   });
 
+  res.status(200).json({
+    success: true,
+  });
 });
-
-
 
 // Get single user (admin)
 exports.getSingleUser = catchAsyncError(async (req, res, next) => {
@@ -244,7 +246,6 @@ exports.deleteUser = catchAsyncError(async (req, res, next) => {
     message: "User Deleted Successfully",
   });
 });
-
 
 // Get all users(admin)
 exports.getAllUser = catchAsyncError(async (req, res, next) => {
