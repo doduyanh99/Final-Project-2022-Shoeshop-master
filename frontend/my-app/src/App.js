@@ -10,11 +10,12 @@ import LoginSignUp from "./component/User/LoginSignUp";
 import store from './store';
 import { loadUser } from "./actions/userAction";
 import UserOptions from "./component/layout/Header/UserOptions.js";
+import { useSelector } from "react-redux";
+
 
 const App = () => {
 
-  
-
+  const { isAuthenticated, user } = useSelector((state) => state.user);
   useEffect(() => {
     store.dispatch(loadUser());
   }, []);

@@ -23,11 +23,11 @@ const LoginSignUp = ({ history, location }) => {
     e.preventDefault();
     const myForm = new FormData();
     const reader = new FileReader();
-     reader.onload = () => {
-        if (reader.readyState === 2) {
-          setAvatar(reader.result);
-        }
-      };
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setAvatar(reader.result);
+      }
+    };
     myForm.set("name", e.target.name.value);
     myForm.set("email", e.target.email.value);
     myForm.set("password", e.target.password.value);
@@ -42,13 +42,13 @@ const LoginSignUp = ({ history, location }) => {
   };
 
   const registerDataChange = (e) => {
-      const reader = new FileReader();
-      reader.onload = () => {
-        if (reader.readyState === 2) {
-          setAvatar(reader.result);
-        }
-      };
-      reader.readAsDataURL(e.target.files[0]);
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setAvatar(reader.result);
+      }
+    };
+    reader.readAsDataURL(e.target.files[0]);
   };
   return (
     <>
@@ -112,7 +112,14 @@ const LoginSignUp = ({ history, location }) => {
                   <label htmlFor="avt" className="labelAvatar">
                     Choose File
                   </label>
-                  <input type="file" accept="image/*" id="avt" className="avatar" name="avatar"  onChange={registerDataChange} />
+                  <input
+                    type="file"
+                    accept="image/*"
+                    id="avt"
+                    className="avatar"
+                    name="avatar"
+                    onChange={registerDataChange}
+                  />
                 </div>
                 <br />
                 <button type="submit">Register</button>
