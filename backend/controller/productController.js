@@ -18,25 +18,28 @@ exports.createProduct = catchAsyncError(async (req,res,next)=>{
 
 // Get All product
 exports.getAllProducts = catchAsyncError(async (req,res, next)=>{
+  try {
+    const resultPerPage = 8;
+    const productsCount = await Product.countDocuments();
+  
+    const apiFeature = new ApiFeatures(Product.find(),req.query)
+    .search()
+    .filter().pagination(resultPerPage)
+  
+    let products = await apiFeature.query;
+    let filteredProductsCount = products.length;
+  
+    res.status(200).json({
+        success:true,
+        products,
+        productsCount,
+        resultPerPage,
+        filteredProductsCount,
+      });
+  } catch (error) {
+    next(error)
+  }
 
-  const resultPerPage = 8;
-  const productsCount = await Product.countDocuments();
-
-  const apiFeature = new ApiFeatures(Product.find(),req.query)
-  .search()
-  .filter().pagination(resultPerPage)
-
-  let products = await apiFeature.query;
-  let filteredProductsCount = products.length;
-  // products = await apiFeature.query;  
-
-  res.status(200).json({
-      success:true,
-      products,
-      productsCount,
-      resultPerPage,
-      filteredProductsCount,
-    });
 });
 
 //Update product - Admin

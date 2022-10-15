@@ -10,8 +10,6 @@ process.on("uncaughtException",(err)=>{
     console.log(`Sutting down server due to Unhandled promise rejection`);
     process.exit(1);
 })
-
-
 //Set up config:
 dotenv.config({path:"backend/config/config.env"});
 
