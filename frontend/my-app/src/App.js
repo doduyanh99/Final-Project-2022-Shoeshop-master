@@ -16,6 +16,7 @@ import { useSelector } from "react-redux";
 const App = () => {
 
   const { isAuthenticated, user } = useSelector((state) => state.user);
+
   useEffect(() => {
     store.dispatch(loadUser());
   }, []);

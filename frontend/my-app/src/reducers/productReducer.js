@@ -9,7 +9,6 @@ import {
 
 
 export const productsReducer = (state = { products: [] }, action) => {
-  console.log(action,"action")
     switch (action.type) {
       case ALL_PRODUCT_REQUEST:
         return {

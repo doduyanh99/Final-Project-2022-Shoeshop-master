@@ -6,7 +6,7 @@ const LoginSignUp = ({ history, location }) => {
   const [tab, setTab] = useState(1);
   const [avatar, setAvatar] = useState("/Profile.png");
   const dispatch = useDispatch();
-  const { error, loading, isAuthenticated } = useSelector(
+  const {  isAuthenticated } = useSelector(
     (state) => state.user
   );
   const loginSubmit = (e) => {
