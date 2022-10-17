@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect } from "react";
 import { useSelector } from "react-redux";
-import MetaData from "../layout/MetaData";
 import Loader from "../layout/Loader/Loader";
 import { Link } from "react-router-dom";
 import "./Profile.css";
@@ -13,14 +12,14 @@ const Profile = ({ history }) => {
       history.push("/login");
     }
   }, [history, isAuthenticated]);
+  
   return (
     <Fragment>
       {loading ? (
         <Loader />
       ) : (
         <Fragment>
-{/*           <MetaData title={`${user.name}'s Profile`} />
- */}          <div className="profileContainer">
+        <div className="profileContainer">
             <div>
               <h1>My Profile</h1>
               <img src={user.avatar.url} alt={user.name} />

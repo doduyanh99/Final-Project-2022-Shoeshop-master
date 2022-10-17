@@ -1,11 +1,28 @@
-.speedDial {
-    position: fixed;
-    right: 3vmax;
-    top: 3vmax;
+  .Icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-top: 30px;
+    cursor: pointer;
   }
-  
-  .speedDialIcon {
-    width: 56px;
-    height: 56px;
-    border-radius: 100%;
+
+  .avtRight{
+  position: relative;
+  }
+  .popup{
+    position: absolute;
+    background-color: black;
+    opacity: 70%;
+    width: 115%;
+    color: white;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+  }
+  .popup_item{
+    margin-bottom: 5px;
+    cursor: pointer;
   }
