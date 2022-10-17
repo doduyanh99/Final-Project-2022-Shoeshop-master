@@ -19,8 +19,8 @@ const Profile = ({ history }) => {
         <Loader />
       ) : (
         <Fragment>
-          <MetaData title={`${user.name}'s Profile`} />
-          <div className="profileContainer">
+{/*           <MetaData title={`${user.name}'s Profile`} />
+ */}          <div className="profileContainer">
             <div>
               <h1>My Profile</h1>
               <img src={user.avatar.url} alt={user.name} />
