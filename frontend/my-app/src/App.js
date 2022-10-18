@@ -14,6 +14,7 @@ import Profile from "./component/User/Profile.js";
 import ProtectedRoute from "./component/Route/ProtectedRoute";
 import UpdateProfile from "./component/User/UpdateProfile.js"
 import UpdatePassword from "./component/User/UpdatePassword.js";
+import ForgotPassword from "./component/User/ForgotPassword.js";
 
 const App = () => {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -33,6 +34,7 @@ const App = () => {
       <ProtectedRoute exact path="/account" component={Profile} />
       <ProtectedRoute exact path="/me/update" component={UpdateProfile} />
       <ProtectedRoute exact path="/password/update" component={UpdatePassword} />
+      <Route exact path="/password/forgot" component={ForgotPassword} />
       <Footer />
     </Router>
   );
