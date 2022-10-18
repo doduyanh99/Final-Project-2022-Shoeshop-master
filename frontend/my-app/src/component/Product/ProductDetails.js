@@ -2,12 +2,13 @@ import React, { Fragment, useEffect, useState } from "react";
 import Carousel from "react-material-ui-carousel";
 import "./ProductDetails.css";
 import { useSelector, useDispatch } from "react-redux";
-import { clearErrors, getProductDetails } from "../../actions/productAction.js";
+import { clearErrors, getProductDetails,newReview } from "../../actions/productAction.js";
 import ReviewCard from "./ReviewCard.js";
 import { useAlert } from "react-alert";
 import Loader from "../layout/Loader/Loader";
 import ReactStars from "react-rating-stars-component";
-import addItemsToCart from "../../actions/cartAction.js"
+import { addItemsToCart } from "../../actions/cartAction.js";
+import { NEW_REVIEW_RESET } from "../../constants/productConstants";
 
 const ProductDetails = ({ match }) => {
   const dispatch = useDispatch();
@@ -86,7 +87,6 @@ const ProductDetails = ({ match }) => {
     dispatch(getProductDetails(match.params.id));
   }, [dispatch, match.params.id, error, alert, reviewError, success]);
 
-
   return (
     <>
       {loading ? (
@@ -111,38 +111,33 @@ const ProductDetails = ({ match }) => {
               <h2>{product.className}</h2>
               <p>Produt # {product._id}</p>
               Status:
-                <b className={product.Stock < 1 ? "redColor" : "greenColor"}>
-                  {product.Stock < 1 ? "OutofStock" : "InStock"}
-                </b>
+              <b className={product.Stock < 1 ? "redColor" : "greenColor"}>
+                {product.Stock < 1 ? "OutofStock" : "InStock"}
+              </b>
             </div>
 
             <div className="detailsBlock-3">
               <p>
-             
                 <h1>{`Price: ${product.price}VND`}</h1>
               </p>
-           
+
               <div className="detailsBlock-3-1">
                 <div className="detailsBlock-3-1-1">
-                <button onClick={decreaseQuantity}>-</button>
-                    <input readOnly type="number" value={quantity} />
-                    <button onClick={increaseQuantity}>+</button>
+                  <button onClick={decreaseQuantity}>-</button>
+                  <input readOnly type="number" value={quantity} />
+                  <button onClick={increaseQuantity}>+</button>
                 </div>{" "}
                 <button>Add to cart</button>
               </div>
             </div>
 
             <div className="detailsBlock-4">
-              <div>
-              Description:
-              </div>
+              <div>Description:</div>
               <p>{product.description}</p>
             </div>
             <div className="rating-1">
-              <p>
-              Rating:
-              </p>
-            
+              <p>Rating:</p>
+
               <ReactStars {...options} />
             </div>
             <div className="submitReview">Sumit Review</div>
