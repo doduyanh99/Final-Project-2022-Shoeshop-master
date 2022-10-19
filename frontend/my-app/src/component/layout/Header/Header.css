@@ -4,6 +4,7 @@
   margin-top: 50px;
   align-items: center;
   gap: 200px;
+  flex: 1 1 0%
 }
 
 .HeaderContainer > img {
@@ -23,3 +24,13 @@
 .textLink:hover{
   color: red;
 }
+.header{
+  display: flex;
+  justify-content: space-between;
+}
+.logoRight{
+ width: 100px;
+ display: flex;
+ align-items: center;
+}
+
