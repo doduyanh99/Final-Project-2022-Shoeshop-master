@@ -7,7 +7,7 @@ const sendEmail = async (options) => {
     secure: false,
     auth: {
       user: "anhddgcd17043@fpt.edu.vn",
-      pass: "Congatheki22!",
+      pass: "Sieunhanthienha985493!",
     },
   });
 

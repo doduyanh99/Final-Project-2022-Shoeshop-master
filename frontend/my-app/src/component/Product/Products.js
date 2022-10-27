@@ -28,7 +28,7 @@ const Products = ({ match }) => {
     setCurrentPage(e);
   };
   useEffect(() => {
-    dispatch(getProduct(keyword, currentPage, price, ratings, category));
+    dispatch(getProduct(keyword, currentPage, price,category, ratings ));
   }, [currentPage, dispatch, keyword, price, ratings, category]);
 
   return (

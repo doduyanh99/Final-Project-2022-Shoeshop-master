@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom"
 const UserOptions = () => {
   let history = useHistory();
   const { user } = useSelector((state) => state.user);
+  
 const [visible,setVisible] = useState(false)
   return (
     <Fragment>
@@ -18,7 +19,7 @@ const [visible,setVisible] = useState(false)
           onClick={() => setVisible(!visible)}
         />
        {visible && <div className="popup">
-         <div className="popup_item" onClick={() => history.push("./account")}>Profile</div>
+         <div className="popup_item" onClick={() => history.push("/account")}>Profile</div>
          <div className="popup_item">Profile</div>
          <div className="popup_item">Profile</div>
          <div className="popup_item">Profile</div>

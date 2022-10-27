@@ -7,6 +7,8 @@ import ReviewCard from "./ReviewCard.js";
 import { useAlert } from "react-alert";
 import Loader from "../layout/Loader/Loader";
 import ReactStars from "react-rating-stars-component";
+import { addItemsToCart } from "../../actions/cartAction";
+
 
 const ProductDetails = ({ match }) => {
   const dispatch = useDispatch();
@@ -15,7 +17,6 @@ const ProductDetails = ({ match }) => {
   const { product, loading, error } = useSelector(
     (state) => state.productDetails
   );
-
   useEffect(() => {
     if (error) {
       alert.error(error);

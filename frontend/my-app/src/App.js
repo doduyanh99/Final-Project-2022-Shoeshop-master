@@ -34,7 +34,7 @@ const App = () => {
       <Route path="/products/:keyword" component={Products} />
       <Route exact path="/login" component={LoginSignUp} />
       <ProtectedRoute exact path="/account" component={Profile} />
-      <ProtectedRoute exact path="/me/update" component={UpdateProfile} />
+      <ProtectedRoute exact path="/account/me" component={UpdateProfile} />
       <ProtectedRoute exact path="/password/update" component={UpdatePassword} />
       <Route exact path="/password/forgot" component={ForgotPassword} />
       <Route exact path="/password/reset/:token" component={ResetPassword} />

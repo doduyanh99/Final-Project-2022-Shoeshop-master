@@ -103,6 +103,7 @@ export const userReducer = (state = { user: {} }, action) => {
 };
 
 export const profileReducer = (state = {}, action) => {
+  console.log(action,"Action")
   switch (action.type) {
     case UPDATE_PROFILE_REQUEST:
     case UPDATE_PASSWORD_REQUEST:
