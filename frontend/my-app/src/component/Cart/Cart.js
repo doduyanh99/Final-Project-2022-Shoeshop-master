@@ -32,7 +32,7 @@ const Cart = ({ history }) => {
   };
 
   const checkoutHandler = () => {
-    history.push("/login?redirect=shipping");
+    history.push("/shipping");
   };
 
   return (
@@ -78,9 +78,9 @@ const Cart = ({ history }) => {
                       +
                     </button>
                   </div>
-                  <p className="cartSubtotal">{`₹${
+                  <p className="cartSubtotal">{`${
                     item.price * item.quantity
-                  }`}</p>
+                  }VND`}</p>
                 </div>
               ))}
 
@@ -88,10 +88,10 @@ const Cart = ({ history }) => {
               <div></div>
               <div className="cartGrossProfitBox">
                 <p>Gross Total</p>
-                <p>{`₹${cartItems.reduce(
+                <p>{`${cartItems.reduce(
                   (acc, item) => acc + item.quantity * item.price,
                   0
-                )}`}</p>
+                )}VND`}</p>
               </div>
               <div></div>
               <div className="checkOutBtn">
