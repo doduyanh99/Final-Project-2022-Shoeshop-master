@@ -28,9 +28,9 @@ const CheckoutSteps = ({ activeStep }) => {
   return (
     <>
        <Stepper alternativeLabel activeStep={activeStep} style={stepStyles}>
-        {steps.map((item, index) => (
+        {steps?.map((item, index) => (
           <Step key={index}>
-          <StepLabel icon = {item.icon}>{item.label}</StepLabel>
+          <StepLabel icon = {item?.icon}>{item?.label}</StepLabel>
           </Step>
   ))};
   </Stepper>

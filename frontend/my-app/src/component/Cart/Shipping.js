@@ -11,8 +11,8 @@ import PhoneIcon from "@material-ui/icons/Phone";
 import TransferWithinAStationIcon from "@material-ui/icons/TransferWithinAStation";
 import { Country, State } from "country-state-city";
 import { useAlert } from "react-alert";
-/* import CheckoutSteps from "../Cart/CheckoutSteps";
- */
+import CheckoutSteps from "../Cart/CheckoutSteps";
+
 const Shipping = ({ history }) => {
   const dispatch = useDispatch();
   const alert = useAlert();
@@ -41,8 +41,8 @@ const Shipping = ({ history }) => {
     <Fragment>
       <MetaData title="Shipping Details" />
 
-{/*       <CheckoutSteps activeStep={0} />
- */}
+      <CheckoutSteps activeStep={0} />
+
       <div className="shippingContainer">
         <div className="shippingBox">
           <h2 className="shippingHeading">Shipping Details</h2>
