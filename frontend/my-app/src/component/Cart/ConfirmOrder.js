@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import CheckoutSteps from "../Cart/CheckoutSteps";
 import { useSelector } from "react-redux";
 import MetaData from "../layout/MetaData";
 import "./ConfirmOrder.css";
@@ -39,7 +38,6 @@ const ConfirmOrder = ({ history }) => {
   return (
     <Fragment>
       <MetaData title="Confirm Order" />
-      <CheckoutSteps activeStep={1} />
       <div className="confirmOrderPage">
         <div>
           <div className="confirmshippingArea">
