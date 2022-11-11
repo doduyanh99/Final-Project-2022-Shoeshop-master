@@ -27,9 +27,7 @@ const App = () => {
     store.dispatch(loadUser());
   }, []);
 
-  a
-
-  return (
+    return (
     <Router>
       <Header user={user} isAuthenticated={isAuthenticated} />      
       <Route exact path="/" component={Home} />
