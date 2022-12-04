@@ -10,8 +10,11 @@ process.on("uncaughtException",(err)=>{
     console.log(`Sutting down server due to Unhandled promise rejection`);
     process.exit(1);
 })
-//Set up config:
-dotenv.config({path:"backend/config/config.env"});
+// Config
+if (process.env.NODE_ENV !== "PRODUCTION") {
+  require("dotenv").config({ path: "backend/config/config.env" });
+}
+
 
 app.use(function (req, res, next) {
     res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
