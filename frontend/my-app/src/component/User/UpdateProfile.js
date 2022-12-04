@@ -10,7 +10,6 @@ const UpdateProfile = ({history}) => {
 
   const { user } = useSelector((state) => state.user);
   const { error, isUpdated, loading } = useSelector((state) => state.profile);
-  console.log(user,isUpdated,"Ss")
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");

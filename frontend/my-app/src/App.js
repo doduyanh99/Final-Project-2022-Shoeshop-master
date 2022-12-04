@@ -1,6 +1,6 @@
 import "./App.css";
-import React, { useEffect } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./component/layout/Header/Header.js";
 import Footer from "./component/layout/Footer/Footer.js";
 import Home from "./component/Home/Home.js";
@@ -18,18 +18,41 @@ import ForgotPassword from "./component/User/ForgotPassword.js";
 import ResetPassword from "./component/User/ResetPassword.js";
 import Cart from "./component/Cart/Cart.js";
 import Shipping from "./component/Cart/Shipping.js";
-import ConfirmOrder from "./component/Cart/ConfirmOrder.js";
-
+import ConfirmOrder from "./component/Cart/ConfirmOrder";
+import axios from "axios";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import Payment from "./component/Cart/Payment";
+import OrderSuccess from "./component/Cart/OrderSuccess";
+import MyOrders from "./component/Order/MyOrders";
+import OrderDetails from "./component/Order/OrderDetail";
+import UserOptions from "./component/layout/Header/UserOptions";
 const App = () => {
   const { isAuthenticated, user } = useSelector((state) => state.user);
 
+
+  const [stripeApiKey, setStripeApiKey] = useState("");
+
+  async function getStripeApiKey() {
+    const { data } = await axios.get("/api/v1/stripeapikey");
+
+    setStripeApiKey(data.stripeApiKey);
+  }
+
   useEffect(() => {
     store.dispatch(loadUser());
+    getStripeApiKey()
   }, []);
 
     return (
     <Router>
+       {stripeApiKey && (
+        <Elements stripe={loadStripe(stripeApiKey)}>
+          <ProtectedRoute exact path="/process/payment" component={Payment} />
+        </Elements>
+      )}
       <Header user={user} isAuthenticated={isAuthenticated} />      
+      <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/product/:id" component={ProductDetails} />
       <Route exact path="/products" component={Products} />
@@ -43,6 +66,11 @@ const App = () => {
       <Route exact path="/cart" component={Cart} />
       <ProtectedRoute exact path="/shipping" component={Shipping} />
       <ProtectedRoute exact path="/order/confirm" component={ConfirmOrder} />
+      <ProtectedRoute exact path="/success" component={OrderSuccess} />
+      <ProtectedRoute exact path="/orders" component={MyOrders} />
+      <ProtectedRoute exact path="/order/:id" component={OrderDetails} />
+      </Switch>
+   
       <Footer />
     </Router>
   );

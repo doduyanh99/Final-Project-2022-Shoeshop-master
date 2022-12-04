@@ -25,7 +25,6 @@ const Header = ({ user, isAuthenticated }) => {
         {isAuthenticated && <UserOptions user={user} />}
         </div>
       </div>
-
       <Search />
     </>
   );
