@@ -9,23 +9,22 @@ const Header = ({ user, isAuthenticated }) => {
   let history = useHistory();
   return (
     <>
-      <div className="header">
-        <div className="HeaderContainer">
-          <img src={logo} alt="logo" onClick={() => history.push("/") } />
-          <Link to={"/"} className="textLink">
-            HOME
-          </Link>
-          <Link to={"/products"} className="textLink">
-            PRODUCTS
-          </Link>
-          <Link className="textLink">ABOUT</Link>
-          <Link className="textLink">CONTACT</Link>
+        <div className="header">
+          <div className="HeaderContainer">
+            <img src={logo} alt="logo" onClick={() => history.push("/")} />
+            <Link to={"/"} className="textLink">
+              HOME
+            </Link>
+            <Link to={"/products"} className="textLink">
+              PRODUCTS
+            </Link>
+            <Link className="textLink">ABOUT</Link>
+            <Link className="textLink">CONTACT</Link>
+          </div>
+          <div className="logoRight">
+            {isAuthenticated && <UserOptions user={user} />}
+          </div>
         </div>
-        <div className="logoRight">
-        {isAuthenticated && <UserOptions user={user} />}
-        </div>
-      </div>
-      <Search />
     </>
   );
 };

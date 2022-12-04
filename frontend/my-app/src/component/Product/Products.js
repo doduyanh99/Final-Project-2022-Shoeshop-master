@@ -6,6 +6,7 @@ import Loader from "../layout/Loader/Loader";
 import ProductCard from "../Home/ProductCart.js";
 import Slider from "@material-ui/core/Slider";
 import Pagination from "react-js-pagination";
+import Search from "./Search";
 
 const categories = ["Vans", "Adidas", "Nike", "Sandal"];
 
@@ -37,6 +38,7 @@ const Products = ({ match }) => {
         <Loader />
       ) : (
         <>
+        <Search />
           <h2 className="productsHeading"> Products </h2>
           <div className="products">
             {products &&
@@ -46,16 +48,6 @@ const Products = ({ match }) => {
           </div>
 
           <div className="filterBox">
-            <h3>Price</h3>
-            <Slider
-              value={price}
-              onChange={priceHandler}
-              valueLabelDisplay="auto"
-              aria-labelledby="range-slider"
-              min={0}
-              max={400000}
-            />
-
             <h3>Categories</h3>
             <ul className="categoryBox">
               {categories.map((category) => (
@@ -68,22 +60,7 @@ const Products = ({ match }) => {
                 </li>
               ))}
             </ul>
-
-            <div>
-              <h3 component="legend">Ratings Stars</h3>
-              <Slider
-                value={ratings}
-                onChange={(e, newRating) => {
-                  setRatings(newRating);
-                }}
-                aria-labelledby="continuous-slider"
-                valueLabelDisplay="auto"
-                min={0}
-                max={5}
-              />
-            </div>
           </div>
-
           {
             <div className="paginationBox">
               <Pagination

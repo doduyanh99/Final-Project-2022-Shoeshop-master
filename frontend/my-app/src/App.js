@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, useHistory } from "react-router-dom";
 import Header from "./component/layout/Header/Header.js";
 import Footer from "./component/layout/Footer/Footer.js";
 import Home from "./component/Home/Home.js";
@@ -27,10 +27,13 @@ import OrderSuccess from "./component/Cart/OrderSuccess";
 import MyOrders from "./component/Order/MyOrders";
 import OrderDetails from "./component/Order/OrderDetail";
 import UserOptions from "./component/layout/Header/UserOptions";
+import Dashboard from "./component/admin/Dashboard";
+import ProductList from "./component/admin/ProductList";
+import NewProduct from "./component/admin/newProduct";
 const App = () => {
   const { isAuthenticated, user } = useSelector((state) => state.user);
 
-
+  let history = useHistory();
   const [stripeApiKey, setStripeApiKey] = useState("");
 
   async function getStripeApiKey() {
@@ -69,9 +72,23 @@ const App = () => {
       <ProtectedRoute exact path="/success" component={OrderSuccess} />
       <ProtectedRoute exact path="/orders" component={MyOrders} />
       <ProtectedRoute exact path="/order/:id" component={OrderDetails} />
+      <ProtectedRoute exact path="/admin/dashboard" component={Dashboard} />
+      <ProtectedRoute
+          exact
+          path="/admin/products"
+          isAdmin={true}
+          component={ProductList}
+        />
+            <ProtectedRoute
+          exact
+          path="/admin/product"
+          isAdmin={true}
+          component={NewProduct}
+        />
+
       </Switch>
    
-      <Footer />
+      {/* <Footer /> */}
     </Router>
   );
 };
