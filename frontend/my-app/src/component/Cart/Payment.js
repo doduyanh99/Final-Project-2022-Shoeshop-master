@@ -89,7 +89,6 @@ const Payment = ({ history }) => {
             id: result.paymentIntent.id,
             status: result.paymentIntent.status,
           };
-          console.log(order,"tuyen")
           dispatch(createOrder(order));
 
           history.push("/success");

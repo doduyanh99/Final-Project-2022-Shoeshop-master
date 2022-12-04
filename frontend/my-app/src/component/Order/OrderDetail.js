@@ -31,9 +31,6 @@ const OrderDetails = ({ match }) => {
           <MetaData title="Order Details" />
           <div className="orderDetailsPage">
             <div className="orderDetailsContainer">
-              <Typography component="h1">
-                Order #{order && order._id}
-              </Typography>
               <Typography>Shipping Info</Typography>
               <div className="orderDetailsContainerBox">
                 <div>

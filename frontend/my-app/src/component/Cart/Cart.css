@@ -10,7 +10,7 @@
   }
   .emptyCart > svg {
     font-size: 5vmax;
-    color: tomato;
+    color: black;
   }
   .emptyCart > p {
     font-size: 2vmax;
@@ -30,7 +30,7 @@
   }
   
   .cartHeader {
-    background-color: tomato;
+    background-color: black;
     width: 90%;
     box-sizing: border-box;
     margin: auto;
@@ -61,7 +61,7 @@
   
   .cartInput > button {
     border: none;
-    background-color: rgba(0, 0, 0, 0.616);
+    background-color: black;
     padding: 0.5vmax;
     cursor: pointer;
     color: white;
@@ -98,7 +98,7 @@
   }
   
   .cartGrossProfitBox {
-    border-top: 3px solid tomato;
+    border-top: 3px solid black;
     margin: 1vmax 4vmax;
     box-sizing: border-box;
     padding: 2vmax 0;
@@ -112,7 +112,7 @@
     justify-content: flex-end;
   }
   .checkOutBtn > button {
-    background-color: tomato;
+    background-color: black;
     color: white;
     border: none;
     padding: 0.8vmax 4vmax;

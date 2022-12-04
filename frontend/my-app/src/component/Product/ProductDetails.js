@@ -105,12 +105,12 @@ const ProductDetails = ({ match }) => {
         <Loader />
       ) : (
         <Fragment>
-          <MetaData title={`${product.name} -- ECOMMERCE`} />
           <div className="ProductDetails">
             <div>
                 {product.images &&
                   product.images.map((item, i) => (
                     <img
+                      className="CarouselImage"
                       key={i}
                       src={item.url}
                       alt={`${i} Slide`}
@@ -121,7 +121,6 @@ const ProductDetails = ({ match }) => {
             <div>
               <div className="detailsBlock-1">
                 <h2>{product.name}</h2>
-                <p>Product # {product._id}</p>
               </div>
               <div className="detailsBlock-2">
                 <Rating {...options} />
@@ -131,13 +130,9 @@ const ProductDetails = ({ match }) => {
               </div>
               <div className="detailsBlock-3">
                 <h1>{`₹${product.price}`}</h1>
-                <div className="detailsBlock-3-1">
-                  <div className="detailsBlock-3-1-1">
-                    <button onClick={decreaseQuantity}>-</button>
-                    <input readOnly type="number" value={quantity} />
-                    <button onClick={increaseQuantity}>+</button>
-                  </div>
+                <div>
                   <button
+                  className="submitReview"
                     disabled={product.Stock < 1 ? true : false}
                     onClick={addToCartHandler}
                   >
@@ -145,12 +140,7 @@ const ProductDetails = ({ match }) => {
                   </button>
                 </div>
 
-                <p>
-                  Status:
-                  <b className={product.Stock < 1 ? "redColor" : "greenColor"}>
-                    {product.Stock < 1 ? "OutOfStock" : "InStock"}
-                  </b>
-                </p>
+              
               </div>
 
               <div className="detailsBlock-4">

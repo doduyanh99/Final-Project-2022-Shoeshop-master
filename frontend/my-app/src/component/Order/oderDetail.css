@@ -1,5 +1,9 @@
 .orderDetailsPage {
   background-color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 .orderDetailsContainer > h1 {

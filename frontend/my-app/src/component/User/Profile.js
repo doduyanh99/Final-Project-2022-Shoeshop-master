@@ -21,11 +21,9 @@ const Profile = ({ history }) => {
         <Fragment>
         <div className="profileContainer">
             <div>
-              <h1>My Profile</h1>
-              <img src={user.avatar.url} alt={user.name} />
-              <Link to="/account/me">Edit Profile</Link>
-            </div>
             <div>
+              <img src={user.avatar.url} alt={user.name} />
+            </div>
               <div>
                 <h4>Full Name</h4>
                 <p>{user.name}</p>
@@ -42,6 +40,7 @@ const Profile = ({ history }) => {
               <div>
                 <Link to="/cart">My Orders</Link>
                 <Link to="/password/update">Change Password</Link>
+              <Link to="/account/me">Edit Profile</Link>
               </div>
             </div>
           </div>

@@ -81,7 +81,6 @@ const MyOrders = () => {
       alert.error(error);
       dispatch(clearErrors());
     }
-console.log(123123)
     dispatch(myOrders());
   }, [dispatch, alert, error]);
 

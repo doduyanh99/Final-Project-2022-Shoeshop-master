@@ -30,6 +30,10 @@ import UserOptions from "./component/layout/Header/UserOptions";
 import Dashboard from "./component/admin/Dashboard";
 import ProductList from "./component/admin/ProductList";
 import NewProduct from "./component/admin/newProduct";
+import OrderList from "./component/admin/OrderList";
+import ProcessOrder from "./component/admin/ProcessOrder";
+import UsersList from "./component/admin/UserList";
+import UpdateUser from "./component/admin/UpdateUser";
 const App = () => {
   const { isAuthenticated, user } = useSelector((state) => state.user);
 
@@ -85,10 +89,31 @@ const App = () => {
           isAdmin={true}
           component={NewProduct}
         />
-
+            <ProtectedRoute
+          exact
+          path="/admin/orders"
+          isAdmin={true}
+          component={OrderList}
+        />
+          <ProtectedRoute
+          exact
+          path="/admin/order/:id"
+          isAdmin={true}
+          component={ProcessOrder}
+        />
+           <ProtectedRoute
+          exact
+          path="/admin/users"
+          isAdmin={true}
+          component={UsersList}
+        />
+   <ProtectedRoute
+          exact
+          path="/admin/user/:id"
+          isAdmin={true}
+          component={UpdateUser}
+        />
       </Switch>
-   
-      {/* <Footer /> */}
     </Router>
   );
 };
