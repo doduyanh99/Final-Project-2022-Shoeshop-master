@@ -129,7 +129,7 @@ const ProductDetails = ({ match }) => {
                 </span>
               </div>
               <div className="detailsBlock-3">
-                <h1>{`₹${product.price}`}</h1>
+                <h1>{`${product.price}VND`}</h1>
                 <div>
                   <button
                   className="submitReview"

@@ -130,7 +130,7 @@ const Payment = ({ history }) => {
 
           <input
             type="submit"
-            value={`Pay - ₹${orderInfo && orderInfo.totalPrice}`}
+            value={`Pay - ${orderInfo && orderInfo.totalPrice}VND`}
             ref={payBtn}
             className="paymentFormBtn"
           />
